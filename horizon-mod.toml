@@ -1,0 +1,34 @@
+# InControl (Horizon port) — one flat package: code, no content.
+#
+# Migrated 2026-11-18 from the retired `.hnmod` container (Horizon's mod-API merge,
+# #16941; the registry closed every `.hnmod` submission for it). The manifest below
+# is the only one: identity, the content capability and the exact native pins.
+# `src/` is the port's code; the mod carries no blocks, items or assets of its own,
+# so there is no `assets/` or `data/` folder.
+#
+# Licence: MIT (upstream, Copyright (c) McJty). Local-only until the maintainer
+# approves publishing (campaign ARCHITECTURE.md §8).
+id = "incontrol"
+name = "InControl!"
+version = "0.2.0"
+description = """Spawn and loot control driven by two JSON rule files a pack author edits by hand:
+config/incontrol/spawn.json denies a fresh mob by id, mod, dimension, height or block/sky light,
+and config/incontrol/loot.json removes, replaces or adds the drops of a mob or a block. Rules are
+ordered, first match wins unless a rule says "continue", /incontrol reload re-reads both files and
+/incontrol status prints what is in force. Summon-aid, area, phase, finalize and despawn rules are
+not ported yet."""
+authors = ["McJty", "AdLf0208"]
+# The content API: exact and checked.
+api = "0.2"
+# The installation side, not the hook's: an integrated server belongs to the client
+# installation, so a single-player world and a LAN host need both. Every hook the
+# port uses is server-side.
+side = "both"
+# The schema's one value. The port declares no registry entries of its own (it is
+# pure logic), but the field is required and this is the only value it takes.
+capabilities = ["registries"]
+
+[native]
+game = "26.3"
+horizon = "0b14f8acfd97fa2c750e42795249dcc981178ca4"
+mixins = "e59da9094f0c2fdda6c627fe9eff22dec6a906f0"

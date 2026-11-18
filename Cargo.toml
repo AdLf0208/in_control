@@ -1,0 +1,21 @@
+[package]
+# Port of InControl 1.21-10.3.0 (McJtyMods/InControl, MIT), branch `1.21_neo`,
+# analysed at 9b95c726. Minecraft Java; the port targets Horizon 26.3 at the pin
+# in horizon-mod.toml. Clean-room Rust rewrite from the mod's behaviour;
+# local-only until publishing is approved, publishable under MIT with this
+# source.
+#
+# Cargo's name and version are not the mod's identity: horizon-mod.toml is.
+name = "incontrol"
+version = "0.2.0"
+edition = "2024"
+license = "MIT"
+description = "InControl for Horizon: spawn.json deny rules and loot.json drop rules"
+publish = false
+
+[dependencies]
+# The pinned SDK's API crate, fetched into .horizon/sdk/ by any `cargo horizon-mod`
+# command (the launcher builds against its own copy of the same build). This port
+# adds no registry dependency of its own, so the package carries no Cargo.lock: a
+# packed lock resolves newer crates than the SDK's own and changes the artifact.
+horizon-mod-api = { path = ".horizon/sdk/api/crates/horizon-mod-api" }
